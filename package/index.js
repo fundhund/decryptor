@@ -4,19 +4,21 @@ const fromBase64 = atob
 
 const toCaesarCipher = (text, shift) => {
     if (!text) {
-        return undefined
+        return ''
+    }
+
+    if (shift === undefined) {
+        return {...Array
+            .from({length: 26}, (_, i) => i)
+            .map(i => toCaesarCipher(text, i))}
     }
 
     if (shift === 0) {
         return text
     }
 
-    if (shift < 0) {
-        return toCaesarCipher(text, shift + 26)
-    }
-
-    if (shift > 26) {
-        return toCaesarCipher(text, shift % 26)
+    if (shift < 0 || shift > 26) {
+        return toCaesarCipher(text, (shift + Math.ceil(-shift / 26) * 26) % 26)
     }
 
     return text
@@ -39,7 +41,16 @@ const toCaesarCipher = (text, shift) => {
         .join('')
 }
 
-const fromCaesarCipher = (text, shift) => toCaesarCipher(text, -shift)
+const fromCaesarCipher = (text, shift) => {
+
+    if (shift === undefined) {
+        return {...Array
+            .from({length: 26}, (_, i) => i)
+            .map(i => toCaesarCipher(text, 26 - i))}
+    }
+
+    return toCaesarCipher(text, -shift)
+}
 
 module.exports = {
     toBase64,
