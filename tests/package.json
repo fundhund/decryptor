@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@fundhund/decryptor": "^1.0.0",
+    "jest": "^27.5.0"
+  }
+}
