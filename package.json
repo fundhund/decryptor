@@ -1,0 +1,19 @@
+{
+  "name": "@fundhund/decryptor",
+  "version": "1.0.0",
+  "description": "A tool for encrypting and decrypting strings without dependencies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fundhund/decryptor.git"
+  },
+  "author": "Marius Mielke <marius.mielke@googlemail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fundhund/decryptor/issues"
+  },
+  "homepage": "https://github.com/fundhund/decryptor#readme"
+}
