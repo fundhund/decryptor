@@ -20,34 +20,52 @@ describe('toCaesarCipher', () => {
         expect(actual).toBe(expected)
     })
 
+    test('processes negative shift', () => {
+        const expected = 'Gdkkn vnqkc'
+        const actual = decryptor.toCaesarCipher('Hello world', -1)
+        expect(actual).toBe(expected)
+    })
+
+    test('processes larger negative shift', () => {
+        const expected = 'Gdkkn vnqkc'
+        const actual = decryptor.toCaesarCipher('Hello world', -53)
+        expect(actual).toBe(expected)
+    })
+
+    test('processes large shift', () => {
+        const expected = 'Gdkkn vnqkc'
+        const actual = decryptor.toCaesarCipher('Hello world', 285)
+        expect(actual).toBe(expected)
+    })
+
     test('encodes all shifts if no shift is given', () => {
         const expected = {
-            "0": "Hello world",
-            "1": "Ifmmp xpsme",
-            "10": "Rovvy gybvn",
-            "11": "Spwwz hzcwo",
-            "12": "Tqxxa iadxp",
-            "13": "Uryyb jbeyq",
-            "14": "Vszzc kcfzr",
-            "15": "Wtaad ldgas",
-            "16": "Xubbe mehbt",
-            "17": "Yvccf nficu",
-            "18": "Zwddg ogjdv",
-            "19": "Axeeh phkew",
-            "2": "Jgnnq yqtnf",
-            "20": "Byffi qilfx",
-            "21": "Czggj rjmgy",
-            "22": "Dahhk sknhz",
-            "23": "Ebiil tloia",
-            "24": "Fcjjm umpjb",
-            "25": "Gdkkn vnqkc",
-            "3": "Khoor zruog",
-            "4": "Lipps asvph",
-            "5": "Mjqqt btwqi",
-            "6": "Nkrru cuxrj",
-            "7": "Olssv dvysk",
-            "8": "Pmttw ewztl",
-            "9": "Qnuux fxaum",
+            '0': 'Hello world',
+            '1': 'Ifmmp xpsme',
+            '10': 'Rovvy gybvn',
+            '11': 'Spwwz hzcwo',
+            '12': 'Tqxxa iadxp',
+            '13': 'Uryyb jbeyq',
+            '14': 'Vszzc kcfzr',
+            '15': 'Wtaad ldgas',
+            '16': 'Xubbe mehbt',
+            '17': 'Yvccf nficu',
+            '18': 'Zwddg ogjdv',
+            '19': 'Axeeh phkew',
+            '2': 'Jgnnq yqtnf',
+            '20': 'Byffi qilfx',
+            '21': 'Czggj rjmgy',
+            '22': 'Dahhk sknhz',
+            '23': 'Ebiil tloia',
+            '24': 'Fcjjm umpjb',
+            '25': 'Gdkkn vnqkc',
+            '3': 'Khoor zruog',
+            '4': 'Lipps asvph',
+            '5': 'Mjqqt btwqi',
+            '6': 'Nkrru cuxrj',
+            '7': 'Olssv dvysk',
+            '8': 'Pmttw ewztl',
+            '9': 'Qnuux fxaum',
         }
         const actual = decryptor.toCaesarCipher('Hello world')
         expect(actual).toStrictEqual(expected)
