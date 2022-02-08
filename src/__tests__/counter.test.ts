@@ -1,4 +1,4 @@
-import * as decryptor from '../index'
+import decryptor from '../index'
 
 describe('count', () => {
     test('counts characters correctly', () => {

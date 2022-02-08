@@ -1,4 +1,11 @@
-export * from './components/base'
-export * from './components/caesar'
-export * from './components/counter'
-export * from './components/vigenere'
+import * as base from './components/base'
+import * as caesar from './components/caesar'
+import * as counter from './components/counter'
+import * as vigenere from './components/vigenere'
+
+export default {
+    ...base,
+    ...caesar,
+    ...counter,
+    ...vigenere,
+}

@@ -12,7 +12,7 @@ const vigenere = (str: string = '', key: string = '', mode: 'encode' | 'decode',
     const { alwaysIncrementKey } = { ...defaultOptions, ...options }
 
     const getShiftedLetter = (code: number, shift: number, start: number) => 
-        String.fromCharCode(((code - start + (mode === 'encode' ? 1 : -1) * shift) % 26) + start)
+        String.fromCharCode(((code - start + (mode === 'encode' ? 1 : -1) * shift + 26) % 26) + start)
 
     const shiftArray: number[] = key.split('')
         .map(char => {
@@ -30,11 +30,9 @@ const vigenere = (str: string = '', key: string = '', mode: 'encode' | 'decode',
         .map(char => {
             const code = char.charCodeAt(0)
             if (isUpperCaseAsciiLetter(code)) {
-                // return String.fromCharCode(((code - 65 + (mode === 'encode' ? 1 : -1) * shiftArray[i++ % keyLength]) % 26) + 65)
                 return getShiftedLetter(code, shiftArray[i++ % keyLength], 65)
             }
             if (isLowerCaseAsciiLetter(code)) {
-                // return String.fromCharCode(((code - 97 + (mode === 'encode' ? 1 : -1) * shiftArray[i++ % keyLength]) % 26) + 97)
                 return getShiftedLetter(code, shiftArray[i++ % keyLength], 97)
             }
             if (alwaysIncrementKey) i++
@@ -48,3 +46,6 @@ const vigenere = (str: string = '', key: string = '', mode: 'encode' | 'decode',
 export const toVigenereCipher = (str: string = '', key: string = '', options?: VigenereOptions) => vigenere(str, key, 'encode', options)
 
 export const fromVigenereCipher = (str: string = '', key: string = '', options?: VigenereOptions) => vigenere(str, key, 'decode', options)
+
+
+console.log(fromVigenereCipher('Rijvs göpvh', 'key', { alwaysIncrementKey: true }))

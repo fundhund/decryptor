@@ -12,8 +12,8 @@ export const toCaesarCipher = (str: string = '', shift: number = 0): string => {
         .split('')
         .map((char) => {
             const code = char.charCodeAt(0)
-            if (isUpperCaseAsciiLetter(code)) return String.fromCharCode(((code - 65 + shift) % 26) + 65)
-            if (isLowerCaseAsciiLetter(code)) return String.fromCharCode(((code - 97 + shift) % 26) + 97)
+            if (isUpperCaseAsciiLetter(code)) return String.fromCharCode(((code - 65 + shift + 26) % 26) + 65)
+            if (isLowerCaseAsciiLetter(code)) return String.fromCharCode(((code - 97 + shift + 26) % 26) + 97)
             return char
         })
         .join('')

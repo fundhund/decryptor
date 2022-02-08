@@ -1,4 +1,4 @@
-import * as decryptor from '../index'
+import decryptor from '../index'
 
 test('encrypts base 64', () => {
     const expected = 'SGVsbG8gd29ybGQ='
