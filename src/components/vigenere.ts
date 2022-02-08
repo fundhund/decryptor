@@ -1,6 +1,19 @@
 import { isLowerCaseAsciiLetter, isUpperCaseAsciiLetter } from "../util/asciiHelper"
 
-const vigenere = (str: string = '', key: string = '', mode: 'encode' | 'decode'): string => {
+type VigenereOptions = {
+    alwaysIncrementKey: boolean
+}
+
+
+const vigenere = (str: string = '', key: string = '', mode: 'encode' | 'decode', options?: VigenereOptions): string => {
+    const defaultOptions = {
+        alwaysIncrementKey: false
+    }
+    const { alwaysIncrementKey } = { ...defaultOptions, ...options }
+
+    const getShiftedLetter = (code: number, shift: number, start: number) => 
+        String.fromCharCode(((code - start + (mode === 'encode' ? 1 : -1) * shift) % 26) + start)
+
     const shiftArray: number[] = key.split('')
         .map(char => {
             const code = char.charCodeAt(0)
@@ -17,11 +30,14 @@ const vigenere = (str: string = '', key: string = '', mode: 'encode' | 'decode')
         .map(char => {
             const code = char.charCodeAt(0)
             if (isUpperCaseAsciiLetter(code)) {
-                return String.fromCharCode(((code - 65 + (mode === 'encode' ? 1 : -1) * shiftArray[i++ % keyLength]) % 26) + 65)
+                // return String.fromCharCode(((code - 65 + (mode === 'encode' ? 1 : -1) * shiftArray[i++ % keyLength]) % 26) + 65)
+                return getShiftedLetter(code, shiftArray[i++ % keyLength], 65)
             }
             if (isLowerCaseAsciiLetter(code)) {
-                return String.fromCharCode(((code - 97 + (mode === 'encode' ? 1 : -1) * shiftArray[i++ % keyLength]) % 26) + 97)
+                // return String.fromCharCode(((code - 97 + (mode === 'encode' ? 1 : -1) * shiftArray[i++ % keyLength]) % 26) + 97)
+                return getShiftedLetter(code, shiftArray[i++ % keyLength], 97)
             }
+            if (alwaysIncrementKey) i++
             return char
         })
         .join('')
@@ -29,9 +45,6 @@ const vigenere = (str: string = '', key: string = '', mode: 'encode' | 'decode')
     return result
 }
 
-export const toVigenereCipher = (str: string = '', key: string = '') => vigenere(str, key, 'encode')
+export const toVigenereCipher = (str: string = '', key: string = '', options?: VigenereOptions) => vigenere(str, key, 'encode', options)
 
-export const fromVigenereCipher = (str: string = '', key: string = '') => vigenere(str, key, 'decode')
-
-console.log(toVigenereCipher('teöst', 'b'))
-console.log(fromVigenereCipher('uftu', 'b'))
+export const fromVigenereCipher = (str: string = '', key: string = '', options?: VigenereOptions) => vigenere(str, key, 'decode', options)
