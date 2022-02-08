@@ -1,4 +1,4 @@
-const decryptor = require('@fundhund/decryptor')
+import * as decryptor from '../index'
 
 describe('count', () => {
 

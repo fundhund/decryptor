@@ -29,12 +29,12 @@ export const toCaesarCipherAll = (str: string = ''): CaesarBruteForceResult => {
 export const fromCaesarCipher = (str: string = '', shift: number = 0): string => toCaesarCipher(str, -shift);
 
 export const fromCaesarCipherAll = (str: string = ''): CaesarBruteForceResult => ({
-  ...Array.from({ length: 26 }, (_, i) => toCaesarCipher(str, i)),
+  ...Array.from({ length: 26 }, (_, i) => toCaesarCipher(str, 26 - i)),
 });
 
 export type CountOptions = {
-  caseSensitive: boolean;
-  pattern: RegExp;
+  caseSensitive?: boolean;
+  pattern?: RegExp;
 };
 
 export type Counter = {

@@ -1,4 +1,4 @@
-const decryptor = require('@fundhund/decryptor')
+import * as decryptor from '../index'
 
 describe('toCaesarCipher', () => {
 
@@ -37,8 +37,11 @@ describe('toCaesarCipher', () => {
         const actual = decryptor.toCaesarCipher('Hello world', 285)
         expect(actual).toBe(expected)
     })
+})
 
-    test('encodes all shifts if no shift is given', () => {
+describe('toCaesarCipherAll', () => {
+
+    test('encodes all shifts', () => {
         const expected = {
             '0': 'Hello world',
             '1': 'Ifmmp xpsme',
@@ -67,7 +70,7 @@ describe('toCaesarCipher', () => {
             '8': 'Pmttw ewztl',
             '9': 'Qnuux fxaum',
         }
-        const actual = decryptor.toCaesarCipher('Hello world')
+        const actual = decryptor.toCaesarCipherAll('Hello world')
         expect(actual).toStrictEqual(expected)
     })
 })
@@ -79,8 +82,11 @@ describe('fromCaesarCipher', () => {
         const actual = decryptor.fromCaesarCipher('Ifmmp xpsme', 1)
         expect(actual).toBe(expected)
     })
+})
 
-    test('brute forces if no shift is given', () => {
+describe('fromCaesarCipherAll', () => {
+
+    test('decodes all shifts', () => {
         const expected = {
             '0': 'Qnuux fxaum',
             '1': 'Pmttw ewztl',
@@ -109,7 +115,7 @@ describe('fromCaesarCipher', () => {
             '24': 'Spwwz hzcwo',
             '25': 'Rovvy gybvn',
         }
-        const actual = decryptor.fromCaesarCipher('Qnuux fxaum')
+        const actual = decryptor.fromCaesarCipherAll('Qnuux fxaum')
         expect(actual).toStrictEqual(expected)
     })
 })
