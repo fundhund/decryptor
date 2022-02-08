@@ -2,7 +2,7 @@
   "name": "@fundhund/decryptor",
   "version": "1.0.0",
   "description": "A zero-dependency tool for encrypting and decrypting strings",
-  "keywords": [],
+  "keywords": ["cryptography", "decoder", "encoder", "crypto", "decrypt", "encrypt", "caesar", "viginere"],
   "files": [
     "lib/**/*"
   ],
@@ -12,7 +12,12 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "test": "jest --config jestconfig.json"
+    "test": "jest --config jestconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postverion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
