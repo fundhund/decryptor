@@ -1,0 +1,38 @@
+{
+  "name": "@fundhund/decryptor",
+  "version": "1.0.0",
+  "description": "A zero-dependency tool for encrypting and decrypting strings",
+  "keywords": [],
+  "files": [
+    "lib/**/*"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fundhund/decryptor.git"
+  },
+  "author": "Marius Mielke <marius.mielke@googlemail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fundhund/decryptor/issues"
+  },
+  "homepage": "https://github.com/fundhund/decryptor#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.5.0",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.3",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.5.5"
+  },
+  "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+  "lint": "tslint -p tsconfig.json"
+}
