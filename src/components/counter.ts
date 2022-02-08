@@ -1,6 +1,7 @@
 export type CounterOptions = {
     caseSensitive?: boolean
     pattern?: RegExp
+    resultType?: 'absolute' | 'relative'
 }
 
 export type Counter = {
@@ -10,18 +11,27 @@ export type Counter = {
 export const count = (str: string = '', options?: CounterOptions): Counter => {
     const defaultOptions = {
         caseSensitive: false,
-        pattern: /\p{Letter}/u,
+        pattern: /\p{Letter}/gu,
+        resultType: 'absolute',
     }
 
-    const { caseSensitive, pattern } = { ...defaultOptions, ...options }
+    const { caseSensitive, pattern, resultType } = { ...defaultOptions, ...options }
 
     const counter: Counter = {}
-    str.split('').forEach((char) => {
-        if (char.match(pattern)) {
-            const key = caseSensitive ? char : char.toLowerCase()
-            counter[key] = key in counter ? counter[key] + 1 : 1
-        }
+    const matches = str.match(pattern.global ? pattern : new RegExp(pattern.source, pattern.flags + 'g')) ?? []
+
+    matches.forEach((char) => {
+        const key = caseSensitive ? char : char.toLowerCase()
+        counter[key] = key in counter ? counter[key] + 1 : 1
     })
+
+    if (resultType === 'relative') {
+        const sum = matches.length
+        for (const key in counter) {
+            counter[key] /= sum 
+        }
+    }
+
     return counter
 }
 

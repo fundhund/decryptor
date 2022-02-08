@@ -24,6 +24,12 @@ describe('count', () => {
         const actual = decryptor.count('ÄäÖöÜü')
         expect(actual).toStrictEqual(expected)
     })
+
+    test('returns relative numbers', () => {
+        const expected = { a: 0.5, b: 0.25, c: 0.25 }
+        const actual = decryptor.count('aabc', { resultType: 'relative' })
+        expect(actual).toStrictEqual(expected)
+    })
 })
 
 describe('isAnagram', () => {
