@@ -1,3 +1,5 @@
+import { isLowerCaseAsciiLetter, isUpperCaseAsciiLetter } from "../util/asciiHelper"
+
 export type CaesarBruteForceResult = {
     [key: number]: string
 }
@@ -10,8 +12,8 @@ export const toCaesarCipher = (str: string = '', shift: number = 0): string => {
         .split('')
         .map((char) => {
             const code = char.charCodeAt(0)
-            if (code >= 65 && code <= 90) return String.fromCharCode(((code - 65 + shift) % 26) + 65)
-            if (code >= 97 && code <= 122) return String.fromCharCode(((code - 97 + shift) % 26) + 97)
+            if (isUpperCaseAsciiLetter(code)) return String.fromCharCode(((code - 65 + shift) % 26) + 65)
+            if (isLowerCaseAsciiLetter(code)) return String.fromCharCode(((code - 97 + shift) % 26) + 97)
             return char
         })
         .join('')
