@@ -14,11 +14,7 @@ export const count = (str: string = '', options?: CounterOptions): Counter => {
         pattern: /\p{Letter}/gu,
         resultType: 'absolute',
     }
-    const { 
-        caseSensitive,
-        pattern,
-        resultType
-    } = { ...defaultOptions, ...options }
+    const { caseSensitive, pattern, resultType } = { ...defaultOptions, ...options }
 
     const counter: Counter = {}
     const matches = str.match(pattern.global ? pattern : new RegExp(pattern.source, pattern.flags + 'g')) ?? []
@@ -31,7 +27,7 @@ export const count = (str: string = '', options?: CounterOptions): Counter => {
     if (resultType === 'relative') {
         const sum = matches.length
         for (const key in counter) {
-            counter[key] /= sum 
+            counter[key] /= sum
         }
     }
 

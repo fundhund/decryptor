@@ -1,4 +1,4 @@
-import { isLowerCaseAsciiLetter, isUpperCaseAsciiLetter } from "../util/asciiHelper"
+import { isLowerCaseAsciiLetter, isUpperCaseAsciiLetter } from '../util/asciiHelper'
 
 export type CaesarBruteForceResult = {
     [key: number]: string
