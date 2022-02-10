@@ -1,6 +1,8 @@
 type Base = 2 | 4 | 8 | 16 | 32 | 64
 
-const BASE_64_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('')
+const BASE_ALPHABETS = {
+    64: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('')
+}
 
 export const fromBase64 = atob
 
@@ -28,7 +30,7 @@ export const toBase64 = (str: string): any => {
     const result = Array.from({ length: Math.ceil(bytes.length / 6) }, (_, i) =>
         bytes.substring(i * 6, i * 6 + 6).padEnd(6, '0'),
     )
-        .map((binary) => BASE_64_ALPHABET[parseInt(binary, 2)])
+        .map((binary) => BASE_ALPHABETS[64][parseInt(binary, 2)])
         .join('')
 
     return result.padEnd(Math.ceil(result.length / 4) * 4, '=')
