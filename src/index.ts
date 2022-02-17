@@ -1,7 +1,7 @@
-import * as base from './components/base'
-import * as caesar from './components/caesar'
-import * as counter from './components/counter'
-import * as vigenere from './components/vigenere'
+import * as base from './modules/base'
+import * as caesar from './modules/caesar'
+import * as counter from './modules/counter'
+import * as vigenere from './modules/vigenere'
 
 export default {
     ...base,

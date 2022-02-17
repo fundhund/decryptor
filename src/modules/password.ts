@@ -1,5 +1,3 @@
-import { check } from "prettier"
-
 export const interpolatePassword = (str: string[][]): string[] => {
     let result = ['']
     str.forEach(group => {
@@ -24,12 +22,3 @@ export const getPasswordByInterpolation = async (
     }
     return null
 }
-
-const pw = [['a', 'A'], ['b', 'B']]
-
-const checkPassword = async (str: string): Promise<boolean> => str === 'Ab'
-
-;(async () => {
-    const realPassword = await getPasswordByInterpolation(pw, checkPassword)
-    console.log(realPassword)
-})()
