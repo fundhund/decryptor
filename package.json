@@ -2,7 +2,16 @@
   "name": "@fundhund/decryptor",
   "version": "1.0.0",
   "description": "A zero-dependency tool for encrypting and decrypting strings",
-  "keywords": ["cryptography", "decoder", "encoder", "crypto", "decrypt", "encrypt", "caesar", "viginere"],
+  "keywords": [
+    "cryptography",
+    "decoder",
+    "encoder",
+    "crypto",
+    "decrypt",
+    "encrypt",
+    "caesar",
+    "viginere"
+  ],
   "files": [
     "lib/**/*"
   ],

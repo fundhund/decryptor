@@ -1,6 +1,7 @@
+import { check } from "prettier"
+
 export const interpolatePassword = (str: string[][]): string[] => {
     let result = ['']
-
     str.forEach(group => {
         const newPasswords: string[] = []
         group.forEach(char => {
@@ -10,9 +11,25 @@ export const interpolatePassword = (str: string[][]): string[] => {
         })
         result = newPasswords
     })
-
     return result
 }
 
-// const pw = [['H', 'h'], ['1', '!', 'I', 'i'], ['1', '2', '3']]
-// console.log(interpolatePassword(pw))
+export const getPasswordByInterpolation = async (
+    str: string[][], 
+    checkPassword: ((password: string) => Promise<boolean> | boolean)
+): Promise<string | null> => {
+    const candidates = interpolatePassword(str)
+    for (const candidate of candidates) {
+        if (await (checkPassword(candidate))) return candidate
+    }
+    return null
+}
+
+const pw = [['a', 'A'], ['b', 'B']]
+
+const checkPassword = async (str: string): Promise<boolean> => str === 'Ab'
+
+;(async () => {
+    const realPassword = await getPasswordByInterpolation(pw, checkPassword)
+    console.log(realPassword)
+})()
